@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgresql:
+    build: .
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: <>
+      POSTGRES_PASSWORD: <>
+      POSTGRES_DB: <>
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql:/var/lib/postgresql/dat
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+    networks:
+      - nasir
+
+networks:
+  nasir:
+    external: true
+    name: nasir
+volumes:
+  postgresql:
+    external: true
+    name: postgresql
